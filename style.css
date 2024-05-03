@@ -194,7 +194,6 @@ section#explore div.discover_explore-bottom div.container div.bottom-right {
     font-size: 16px;
 }
 section#explore div.discover_explore-bottom div.container div.bottom-right div.result-found {
-    display: flex;
     font-size: 18px;
     margin-bottom: 15px;
     font-weight: 700;
@@ -203,5 +202,59 @@ section#explore div.discover_explore-bottom div.container div.bottom-right div.r
     margin-right: 5px;
 }
 
+ div.items {
+    width: 100%;
+} 
+ div.items div.left-side {
+    width: 100%;
+}
+ div.items div.left-side div.image-container {
+    width: 400px;
+}
+ div.items div.left-side div.image-container img {
+    width: 100%;
+}
+section#explore div.discover_explore-bottom div.container div.bottom-right div.items {
+    display: flex;
+    padding: 8px;
+    margin-bottom: 16px;
+    max-width: 696px;
+    min-height: 64px;
+    width: 100%;
+}
+section#explore div.discover_explore-bottom div.container div.bottom-right div.items:hover {
+    background-color: #f2f2f2;
+}
+section#explore div.discover_explore-bottom div.container div.bottom-right div.items div.left-side {
+    max-width: 256px;
+    width: 100%;
+    height: 145px;
+    margin-right: 16px; 
+}
+section#explore div.discover_explore-bottom div.container div.bottom-right div.items div.left-side div.image-container {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    border-radius: 8px;
+    overflow: hidden;
+}
+section#explore div.discover_explore-bottom div.container div.bottom-right div.items div.left-side div.image-container img {
+    width: 100%;
+    height: 100%;
+}
+section#explore div.discover_explore-bottom div.container div.bottom-right div.items div.right-side {
+    width: 100%;
+}
+section#explore div.discover_explore-bottom div.container div.bottom-right div.items div.right-side h6 {
+    font-size: 14px;
+    margin-bottom: 7px;
+}
+section#explore div.discover_explore-bottom div.container div.bottom-right div.items div.right-side p  {
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+section#explore div.discover_explore-bottom div.container div.bottom-right div.items div.right-side span {
+    font-size: 11px;
+}
 
 
