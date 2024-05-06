@@ -163,7 +163,7 @@ section#explore div.discover_explore-bottom div.container div.bottom-left {
     max-width: 280px;
     width: 100%;
 }
-section#explore div.discover_explore-bottom div.container div.bottom-left a.active {
+section#explore div.discover_explore-bottom div.container div.bottom-left a {
     max-width: 272px;
     display: flex;
     align-items: center;
@@ -171,10 +171,18 @@ section#explore div.discover_explore-bottom div.container div.bottom-left a.acti
     width: 100%;
     border-radius: 4px;
     padding: 11px 14px;
-    margin-right: 8px;
+    /* margin-right: 8px; */
     margin-bottom: 12px;
+    color: black;
 }
-section#explore div.discover_explore-bottom div.container div.bottom-left a.active:hover{
+section#explore div.discover_explore-bottom div.container div.bottom-left a.active {
+    background-color: #f2f2f2;
+}
+section#explore div.discover_explore-bottom div.container div.bottom-left a i {
+    margin-right: 8px;
+
+}
+section#explore div.discover_explore-bottom div.container div.bottom-left a:hover{
     background-color: #f2f2f2;
 
 }
@@ -202,25 +210,26 @@ section#explore div.discover_explore-bottom div.container div.bottom-right div.r
     margin-right: 5px;
 }
 
- div.items {
+section#explore div.discover_explore-bottom div.container div.bottom-right div.items {
     width: 100%;
 } 
- div.items div.left-side {
+section#explore div.discover_explore-bottom div.container div.bottom-right div.items div.left-side {
     width: 100%;
 }
- div.items div.left-side div.image-container {
+section#explore div.discover_explore-bottom div.container div.bottom-right div.items div.left-side div.image-container {
     width: 400px;
 }
- div.items div.left-side div.image-container img {
+section#explore div.discover_explore-bottom div.container div.bottom-right div.items div.left-side div.image-container img {
     width: 100%;
 }
-section#explore div.discover_explore-bottom div.container div.bottom-right div.items {
+ section#explore div.discover_explore-bottom div.container div.bottom-right div.items {
     display: flex;
     padding: 8px;
     margin-bottom: 16px;
     max-width: 696px;
     min-height: 64px;
     width: 100%;
+    cursor: pointer;
 }
 section#explore div.discover_explore-bottom div.container div.bottom-right div.items:hover {
     background-color: #f2f2f2;
@@ -257,4 +266,7 @@ section#explore div.discover_explore-bottom div.container div.bottom-right div.i
     font-size: 11px;
 }
 
+
+
+/* responsive/////////// */
 
