@@ -184,7 +184,6 @@ section#explore div.discover_explore-bottom div.container div.bottom-left a i {
 }
 section#explore div.discover_explore-bottom div.container div.bottom-left a:hover{
     background-color: #f2f2f2;
-
 }
 section#explore div.discover_explore-bottom div.container div.bottom-left a.active i {
     margin-right: 8px;
@@ -192,6 +191,11 @@ section#explore div.discover_explore-bottom div.container div.bottom-left a.acti
 }
 section#explore div.discover_explore-bottom div.container div.bottom-left a.active span.explore-btn {
     color: black;
+}
+section#explore div.discover_explore-bottom div.container div.bottom-left a .explore-count {
+    margin-left: auto; 
+    margin-right: 10px; 
+     
 }
 
 /* left end//// */

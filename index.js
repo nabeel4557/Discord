@@ -63,6 +63,25 @@
 
 
 document.addEventListener('DOMContentLoaded', function() {
+
+    fetch('./discord_data.json')
+    .then(response => response.json())
+    .then(data => {
+        // Render data for "All" category by default
+        renderData(data.data);
+
+        const categoryButtons = document.querySelectorAll('.bottom-left a');
+        categoryButtons.forEach(button => {
+            const category = button.dataset.category.toLowerCase();
+            const count = getCategoryCount(data.data, category);
+            button.querySelector('.explore-count').textContent = count;
+        });
+    })
+    .catch(error => console.error('Error fetching JSON:', error));
+
+
+
+
     const categoryButtons = document.querySelectorAll('.bottom-left a');
 
     categoryButtons.forEach(button => {
@@ -79,6 +98,12 @@ document.addEventListener('DOMContentLoaded', function() {
                         filteredData = data.data.filter(item => item.category.toLowerCase() === category);
                     }
                     renderData(filteredData);
+
+                     const countSpan = button.querySelector('.explore-count');
+                     countSpan.textContent = filteredData.length;
+
+                     const resultFoundSpan = document.querySelector('.result-found .no-of-results');
+                     resultFoundSpan.textContent = filteredData.length;
                 })
                 .catch(error => console.error('Error fetching JSON:', error));
         });
@@ -134,9 +159,12 @@ document.addEventListener('DOMContentLoaded', function() {
             resultContainer.appendChild(itemContainer);
         });
     }
+
+
+    function getCategoryCount(data, category) {
+        return category === 'all' ? data.length : data.filter(item => item.category.toLowerCase() === category).length;
+    }
 });
-
-
 
 
 // When active, the background color changes//////////
