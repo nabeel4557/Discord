@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     const categoryButtons = document.querySelectorAll('.bottom-left a');
+    const dropdown = document.querySelectorAll(".category-dropdown a")
 
     categoryButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -99,6 +100,41 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                     renderData(filteredData);
 
+
+    
+
+                     const countSpan = button.querySelector('.explore-count');
+                     countSpan.textContent = filteredData.length;
+
+                     const resultFoundSpan = document.querySelector('.result-found .no-of-results');
+                     resultFoundSpan.textContent = filteredData.length;
+                })
+                .catch(error => console.error('Error fetching JSON:', error));
+        });
+    });
+
+
+    // dropdownbutton////////
+
+
+    dropdown.forEach(button => {
+        button.addEventListener('click', () => {
+            const category = button.dataset.category.toLowerCase();
+            fetch('./discord_data.json')
+                .then(response => response.json())
+                .then(data => {
+                    
+                    let filteredData;
+                    if (category === 'all') {
+                        filteredData = data.data;
+                    } else {
+                        filteredData = data.data.filter(item => item.category.toLowerCase() === category);
+                    }
+                    renderData(filteredData);
+
+
+    
+
                      const countSpan = button.querySelector('.explore-count');
                      countSpan.textContent = filteredData.length;
 
@@ -110,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     function renderData(data) {
-        const resultContainer = document.querySelector('.bottom-right');
+        const resultContainer = document.querySelector('.bottom-content');
         resultContainer.innerHTML = '';
 
         data.forEach(item => {
@@ -161,6 +197,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
+
     function getCategoryCount(data, category) {
         return category === 'all' ? data.length : data.filter(item => item.category.toLowerCase() === category).length;
     }
@@ -184,8 +221,22 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+// dropdown categories////////
 
-// Data displayed on each category click////////
+document.addEventListener("DOMContentLoaded", function() {
+    var categoryButton = document.getElementById("category-button");
+    var categoryDropdown = document.getElementById("category-dropdown");
+
+    categoryButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        categoryDropdown.classList.toggle("show");
+    });
+});
+
+
+
+
+
 
 
 
