@@ -184,17 +184,19 @@ section#explore div.category-dropdown.show {
     padding: 20px 10px;
     left: 45px;
     margin-top: 20px;
-    display: grid; /* Added grid display */
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Grid layout */
-    gap: 10px; /* Space between grid items */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
 }
 section#explore div.category-dropdown a {
-    background-color: #ccc;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     color: black;
     padding: 10px;
     margin-right: 20px;
     border-radius: 4px;
-    /* margin-top: 20px; */
     
 }
 section#explore div.category-dropdown i {
@@ -239,7 +241,7 @@ section#explore div.discover_explore-bottom div.container div.bottom-left a i {
 
 }
 section#explore div.discover_explore-bottom div.container div.bottom-left a:hover{
-    background-color: #f2f2f2;
+    /* background-color: #f2f2f2; */
 }
 section#explore div.discover_explore-bottom div.container div.bottom-left a.active i {
     margin-right: 8px;
@@ -272,21 +274,9 @@ section#explore div.discover_explore-bottom div.container div.bottom-right div.r
     margin-right: 5px;
 }
 
-section#explore div.discover_explore-bottom div.container div.bottom-right div.items {
-    width: 100%;
-} 
-section#explore div.discover_explore-bottom div.container div.bottom-right div.items div.left-side {
-    width: 100%;
-}
-section#explore div.discover_explore-bottom div.container div.bottom-right div.items div.left-side div.image-container {
-    width: 400px;
-}
-section#explore div.discover_explore-bottom div.container div.bottom-right div.items div.left-side div.image-container img {
-    width: 100%;
-}
  section#explore div.discover_explore-bottom div.container div.bottom-right div.items {
     display: flex;
-    padding: 8px;
+    padding: 8px 0px 8px 0px;
     margin-bottom: 16px;
     max-width: 696px;
     min-height: 64px;
@@ -299,7 +289,7 @@ section#explore div.discover_explore-bottom div.container div.bottom-right div.i
 section#explore div.discover_explore-bottom div.container div.bottom-right div.items div.left-side {
     max-width: 256px;
     width: 100%;
-    /* height: 145px; */
+    height: 145px;
     margin-right: 16px; 
 }
 section#explore div.discover_explore-bottom div.container div.bottom-right div.items div.left-side div.image-container {
@@ -364,10 +354,6 @@ section#explore div.discover_explore-bottom div.container div.bottom-right div.i
 
 
 @media(max-width: 1080px) {
-    section#explore div.discover_explore-top {
-        
-    }
-   
     section#explore div.discover_explore-bottom div.container div.bottom-left {
         max-width: 240px;
         width: 100%;
@@ -568,7 +554,8 @@ section#explore div.discover_explore-bottom div.container div.bottom-right div.i
         margin-top: 18px;
     }
     section#explore div.discover_explore-bottom div.container div.bottom-right div.items div.left-side {
-        max-width: 80px;
+        max-width: 60px;
+        height: 60px;
     }
     section#explore div.discover_explore-bottom div.container div.bottom-right div.items div.right-side h6 {
         margin-bottom: 5px;
@@ -580,6 +567,7 @@ section#explore div.discover_explore-bottom div.container div.bottom-right div.i
     section#explore div.discover_explore-bottom div.container div.bottom-right div.items div.right-side span {
        font-weight: 500;
     }
+    
 
 }
 @media(max-width: 480px) {

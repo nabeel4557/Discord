@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discord</title>
     <link rel="stylesheet" href="style.css">
-
+    <link rel="icon" href="images/discord.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -48,11 +48,11 @@
     <section id="explore" class="wrapper">
         <div class="discover_explore-top">
             <div class="search-container">
-                <input type="text" id="search" placeholder="Explre communities">
+                <input type="text" id="search" placeholder="Explore communities">
             </div>
-            <button><i class="fa-solid fa-magnifying-glass" style="color: white;"></i></button>
+            <button class="searchButton"><i class="fa-solid fa-magnifying-glass" style="color: white;"></i></button>
         </div>
-
+        
         <a href="#" class="category-button-container " id="category-button">
             <div class="category-button">
                 <span class="category-name">categories</span>
@@ -62,36 +62,47 @@
 
         <div id="category-dropdown" class="category-dropdown">
             <a href="#" class="active" data-category="All" >
-                <i class="fa-solid fa-compass"></i>
-                <span class="explore-btn">All</span>
+                <span class="catogory-icon">
+                    <i class="fa-solid fa-compass"></i>
+                    <span class="explore-btn">All</span>
+                </span>
                 <span class="explore-count"></span>
             </a>
             <a href="#" class="active" data-category="gaming">
+                <span class="catogory-icon">
                 <i class="fa-solid fa-gamepad"></i>
                 <span class="explore-btn">Gaming</span>
+                </span>
                 <span class="explore-count"></span>
             </a>
             <a href="#" class="active" data-category="entertainment">
-                <i class="fa-solid fa-tv"></i>
-                <span class="explore-btn">Entertainment</span>
+                <span class="catogory-icon">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <span class="explore-btn">Entertainment</span>
+                </span>
                 <span class="explore-count"></span>
             </a>
             <a href="#" class="active" data-category="education">
-                <i class="fa-solid fa-graduation-cap"></i>
-                <span class="explore-btn">Education</span>
+                <span class="catogory-icon">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <span class="explore-btn">Education</span>
+                </span>
                 <span class="explore-count"></span>
             </a>
             <a href="#" class="active" data-category="Science & tech">
-                        <i class="fa-solid fa-atom"></i>
-                        <span class="explore-btn">Science & tech</span>
-                        <span class="explore-count"></span>
-            </a>
-            <a href="#" class="active" data-category="Music">
-                <i class="fa-solid fa-music"></i>
-                <span class="explore-btn">Music</span>
+                <span class="catogory-icon">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <span class="explore-btn">Science & tech</span>
+                </span>
                 <span class="explore-count"></span>
             </a>
-
+            <a href="#" class="active" data-category="Music">
+                <span class="catogory-icon">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <span class="explore-btn">Music</span>
+                </span>
+                <span class="explore-count"></span>
+            </a>
         </div>
 
         <div class="discover_explore-bottom">
@@ -102,27 +113,27 @@
                         <span class="explore-btn">All</span>
                         <span class="explore-count"></span>
                     </a>
-                    <a href="#" class="active" data-category="gaming">
+                    <a href="#" class="" data-category="gaming">
                         <i class="fa-solid fa-gamepad"></i>
                         <span class="explore-btn">Gaming</span>
                         <span class="explore-count"></span>
                     </a>
-                    <a href="#" class="active" data-category="entertainment">
+                    <a href="#" class="" data-category="entertainment">
                         <i class="fa-solid fa-tv"></i>
                         <span class="explore-btn">Entertainment</span>
                         <span class="explore-count"></span>
                     </a>
-                    <a href="#" class="active" data-category="education">
+                    <a href="#" class="" data-category="education">
                         <i class="fa-solid fa-graduation-cap"></i>
                         <span class="explore-btn">Education</span>
                         <span class="explore-count"></span>
                     </a>
-                    <a href="#" class="active" data-category="Science & tech">
+                    <a href="#" class="" data-category="Science & tech">
                         <i class="fa-solid fa-atom"></i>
                         <span class="explore-btn">Science & tech</span>
                         <span class="explore-count"></span>
                     </a>
-                    <a href="#" class="active" data-category="Music">
+                    <a href="#" class="" data-category="Music">
                         <i class="fa-solid fa-music"></i>
                         <span class="explore-btn">Music</span>
                         <span class="explore-count"></span>

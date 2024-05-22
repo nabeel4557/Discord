@@ -1,157 +1,82 @@
-// feach json file////////////
 
-// document.addEventListener('DOMContentLoaded', function() {
 
-//     fetch('./discord_data.json')
-//         .then(response => response.json())
-//         .then(data => {
-//             data.data.forEach(item => {
-                
-//                 var title = item.title;
-//                 var description = item.description;
-//                 var online = item.online;
-//                 var members = item.members;
-//                 var imageURL = item.image; 
-                
-//                 var itemContainer = document.createElement('div');
-//                 itemContainer.classList.add('items');
+// //search....
 
-//                 var leftSide = document.createElement('div');
-//                 leftSide.classList.add('left-side');
-
-//                 var imageContainer = document.createElement('div');
-//                 imageContainer.classList.add('image-container');
-
-//                 var img = document.createElement('img');
-//                 img.src = imageURL; 
-//                 img.classList.add('item-image');
-//                 img.alt = 'item-image'; 
-
-//                 imageContainer.appendChild(img);
-//                 leftSide.appendChild(imageContainer);
-
-//                 var rightSide = document.createElement('div');
-//                 rightSide.classList.add('right-side');
-
-//                 var h6Title = document.createElement('h6');
-//                 h6Title.textContent = title;
-
-//                 var pDescription = document.createElement('p');
-//                 pDescription.textContent = description;
-
-//                 var spanOnline = document.createElement('span');
-//                 spanOnline.textContent = 'Online: ' + online;
-
-//                 var spanMembers = document.createElement('span');
-//                 spanMembers.textContent = 'Members: ' + members;
-
-//                 rightSide.appendChild(h6Title);
-//                 rightSide.appendChild(pDescription);
-//                 rightSide.appendChild(spanOnline);
-//                 rightSide.appendChild(spanMembers);
-
-//                 itemContainer.appendChild(leftSide);
-//                 itemContainer.appendChild(rightSide);
-
-//                 document.querySelector('.bottom-right').appendChild(itemContainer);
-//             });
-//         })
-//         .catch(error => console.error('Error fetching JSON:', error));
-// });
 
 
 
 
 document.addEventListener('DOMContentLoaded', function() {
+    const categoryButton = document.getElementById("category-button");
+    const categoryDropdown = document.getElementById("category-dropdown");
+    const categoryNameElement = document.querySelector(".category-name");
+    const resultCountSpan = document.querySelector('.result-found .no-of-results');
+    const searchInput = document.getElementById("search");
+    const searchButton = document.querySelector(".searchButton");
+    let allData = [];
+    let currentCategory = 'all';
 
+    // Fetch and initialize data
     fetch('./discord_data.json')
-    .then(response => response.json())
-    .then(data => {
-        // Render data for "All" category by default
-        renderData(data.data);
+        .then(response => response.json())
+        .then(data => {
+            allData = data.data;
+            renderData(allData);
+            updateCategoryCounts(allData);
+            updateResultCount(allData.length);
+            setupCategoryButtons(allData);
+            updateDropdownCategoryCounts(allData);
+        })
+        .catch(error => console.error('Error fetching data:', error));
+        
 
-        const categoryButtons = document.querySelectorAll('.bottom-left a');
+        
+    const categoryButtons = document.querySelectorAll('.bottom-left a');
+    
+    function setupCategoryButtons(data) {
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.preventDefault();
+                const category = button.dataset.category.toLowerCase();
+                currentCategory = category;
+
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                categoryNameElement.textContent = category;
+
+                const filteredData = category === 'all'
+                    ? data
+                    : data.filter(item => item.category.toLowerCase() === category);
+
+                renderData(filteredData);
+                updateResultCount(filteredData.length);
+            });
+        });
+    }
+
+    function updateCategoryCounts(data) {
         categoryButtons.forEach(button => {
             const category = button.dataset.category.toLowerCase();
-            const count = getCategoryCount(data.data, category);
+            const count = getCategoryCount(data, category);
             button.querySelector('.explore-count').textContent = count;
         });
-    })
-    .catch(error => console.error('Error fetching JSON:', error));
+    }
 
 
-
-
-    const categoryButtons = document.querySelectorAll('.bottom-left a');
-    const dropdown = document.querySelectorAll(".category-dropdown a")
-
-    categoryButtons.forEach(button => {
-        button.addEventListener('click', () => {
+    function updateDropdownCategoryCounts(data) {
+        const dropdownButtons = document.querySelectorAll("#category-dropdown a");
+        dropdownButtons.forEach(button => {
             const category = button.dataset.category.toLowerCase();
-            fetch('./discord_data.json')
-                .then(response => response.json())
-                .then(data => {
-                    
-                    let filteredData;
-                    if (category === 'all') {
-                        filteredData = data.data;
-                    } else {
-                        filteredData = data.data.filter(item => item.category.toLowerCase() === category);
-                    }
-                    renderData(filteredData);
-
-
-    
-
-                     const countSpan = button.querySelector('.explore-count');
-                     countSpan.textContent = filteredData.length;
-
-                     const resultFoundSpan = document.querySelector('.result-found .no-of-results');
-                     resultFoundSpan.textContent = filteredData.length;
-                })
-                .catch(error => console.error('Error fetching JSON:', error));
+            const count = getCategoryCount(data, category);
+            button.querySelector('.explore-count').textContent = count;
         });
-    });
-
-
-    // dropdownbutton////////
-
-
-    dropdown.forEach(button => {
-        button.addEventListener('click', () => {
-            const category = button.dataset.category.toLowerCase();
-            fetch('./discord_data.json')
-                .then(response => response.json())
-                .then(data => {
-                    
-                    let filteredData;
-                    if (category === 'all') {
-                        filteredData = data.data;
-                    } else {
-                        filteredData = data.data.filter(item => item.category.toLowerCase() === category);
-                    }
-                    renderData(filteredData);
-
-
-    
-
-                     const countSpan = button.querySelector('.explore-count');
-                     countSpan.textContent = filteredData.length;
-
-                     const resultFoundSpan = document.querySelector('.result-found .no-of-results');
-                     resultFoundSpan.textContent = filteredData.length;
-                })
-                .catch(error => console.error('Error fetching JSON:', error));
-        });
-    });
+    }
 
     function renderData(data) {
         const resultContainer = document.querySelector('.bottom-content');
         resultContainer.innerHTML = '';
 
         data.forEach(item => {
-            const { title, description, online, members, image } = item;
-
             const itemContainer = document.createElement('div');
             itemContainer.classList.add('items');
 
@@ -162,9 +87,9 @@ document.addEventListener('DOMContentLoaded', function() {
             imageContainer.classList.add('image-container');
 
             const img = document.createElement('img');
-            img.src = image; 
+            img.src = item.image;
             img.classList.add('item-image');
-            img.alt = 'item-image'; 
+            img.alt = 'item-image';
 
             imageContainer.appendChild(img);
             leftSide.appendChild(imageContainer);
@@ -173,16 +98,16 @@ document.addEventListener('DOMContentLoaded', function() {
             rightSide.classList.add('right-side');
 
             const h6Title = document.createElement('h6');
-            h6Title.textContent = title;
+            h6Title.textContent = item.title;
 
             const pDescription = document.createElement('p');
-            pDescription.textContent = description;
+            pDescription.textContent = item.description;
 
             const spanOnline = document.createElement('span');
-            spanOnline.textContent = 'Online: ' + online;
+            spanOnline.textContent = 'Online: ' + item.online;
 
             const spanMembers = document.createElement('span');
-            spanMembers.textContent = 'Members: ' + members;
+            spanMembers.textContent = 'Members: ' + item.members;
 
             rightSide.appendChild(h6Title);
             rightSide.appendChild(pDescription);
@@ -196,51 +121,62 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-
-
     function getCategoryCount(data, category) {
-        return category === 'all' ? data.length : data.filter(item => item.category.toLowerCase() === category).length;
+        return category === 'all'
+            ? data.length
+            : data.filter(item => item.category.toLowerCase() === category).length;
     }
-});
 
+    function updateResultCount(count) {
+        resultCountSpan.textContent = count;
+    }
 
-// When active, the background color changes//////////
-
-document.addEventListener('DOMContentLoaded', function() {
-    const Active = document.querySelectorAll('.bottom-left a');
-
-    Active.forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
-
-            Active.forEach(link => link.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });
-
-});
-
-
-// dropdown categories////////
-
-document.addEventListener("DOMContentLoaded", function() {
-    var categoryButton = document.getElementById("category-button");
-    var categoryDropdown = document.getElementById("category-dropdown");
-
+    // Category dropdown toggle
     categoryButton.addEventListener("click", function(event) {
         event.preventDefault();
         categoryDropdown.classList.toggle("show");
     });
+
+    // Update category name and hide dropdown on selection
+    const dropdownButtons = document.querySelectorAll("#category-dropdown a");
+    dropdownButtons.forEach(button => {
+        button.addEventListener("click", function(event) {
+            event.preventDefault();
+            categoryDropdown.classList.remove("show");
+            const category = button.dataset.category;
+            categoryNameElement.textContent = category;
+        });
+    });
+
+    // Hide dropdown when clicking outside
+    window.addEventListener("click", function(event) {
+        if (!event.target.closest("#category-button")) {
+            categoryDropdown.classList.remove("show");
+        }
+    });
+
+    // Search function
+    function performSearch() {
+        const searchTerm = searchInput.value.toLowerCase();
+
+        // Filter data based on the search term and current category
+        const filteredData = allData.filter(item => {
+            const matchesSearch = item.title.toLowerCase().includes(searchTerm) || item.description.toLowerCase().includes(searchTerm);
+            const matchesCategory = currentCategory === 'all' || item.category.toLowerCase() === currentCategory;
+            return matchesSearch && matchesCategory;
+        });
+
+        renderData(filteredData);
+        updateResultCount(filteredData.length);
+    }
+
+    // Event listener for search button click
+    searchButton.addEventListener('click', performSearch);
+
+    // Event listener for Enter key press in the search input field
+    searchInput.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            performSearch();
+        }
+    });
 });
-
-
-
-
-
-
-
-
-
-
-
-
